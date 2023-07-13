@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 
 app = Flask(__name__)
+#Not so secret, secret key
 app.config['SECRET_KEY'] = '1be50495bed1fc45e20ec51d30d51be18ce92026ed4483d3'
 
 messages = []
