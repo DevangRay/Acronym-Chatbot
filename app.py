@@ -11,14 +11,12 @@ def chat_bot():
     elif request.method == 'POST':
         question = request.form['question']
         if question == "":
-            print("here")
             flash('Please type something bozo')
         else:
             # GET ANSWER from CHATGPT
             answer = "bababooey"
             messages.append({'question': question, 'answer': answer})
             return render_template("app_home.html",  messages = messages)
-
     return render_template("app_home.html", messages = messages)
 
 
