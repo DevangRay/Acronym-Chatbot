@@ -31,49 +31,50 @@ def generate_response(user_input):
     return response.choices[0].text.strip()
 
 # Chatbot loop
-while True:
-    user_input = input("User: ").upper().split(" ")
+def run_chatbot():
+    while True:
+        user_input = input("User: ").upper().split(" ")
 
-    if user_input[0] == 'EXIT':
-        break
+        if user_input[0] == 'EXIT':
+            break
 
-    flag = False
-    for word in user_input:
-        if word in acronym_definitions:
-            response = ""
-            definition = acronym_definitions.get(word)
-            description = acronym_descriptions.get(word)
+        flag = False
+        for word in user_input:
+            if word in acronym_definitions:
+                response = ""
+                definition = acronym_definitions.get(word)
+                description = acronym_descriptions.get(word)
 
-            if definition == '***':
+                if definition == '***':
+
+                    if description == '***':
+                        no_description = "It is a valid acronym, but neither its definition nor description are listed. "
+                        response += no_description
+                        print(f"Chatbot: {response}")
+                        flag = True
+                        break
+                    else:
+                        gpt_response = generate_response(description)
+                        response += gpt_response
+                        print(f"Chatbot: {response}")
+                    flag = True
+                    break
+
+                response += definition + '- '
 
                 if description == '***':
-                    no_description = "It is a valid acronym, but neither its definition nor description are listed. "
-                    response += no_description
+                    no_descrip = "Sorry, there isn't a description for this acronym."
+                    response += no_descrip
                     print(f"Chatbot: {response}")
                     flag = True
                     break
-                else:
-                    gpt_response = generate_response(description)
-                    response += gpt_response
-                    print(f"Chatbot: {response}")
-                flag = True
-                break
 
-            response += definition + '- '
+                gpt_response = generate_response(description)
+                response += gpt_response
 
-            if description == '***':
-                no_descrip = "Sorry, there isn't a description for this acronym."
-                response += no_descrip
                 print(f"Chatbot: {response}")
                 flag = True
                 break
 
-            gpt_response = generate_response(description)
-            response += gpt_response
-
-            print(f"Chatbot: {response}")
-            flag = True
-            break
-
-    if not flag:
-        print(f"Chatbot: Sorry, I have neither a definition nor description for this acronym.")
+        if not flag:
+            print(f"Chatbot: Sorry, I have neither a definition nor description for this acronym.")
