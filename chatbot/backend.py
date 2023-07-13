@@ -80,9 +80,9 @@ df['n_tokens'] = df['Definition'].astype(str).apply(lambda x: len(tokenizer.enco
 df.n_tokens.hist()
 
 
-df['embeddings'] = df['Definition'].astype(str).apply(lambda x: openai.Embedding.create(input=x, engine='text-embedding-ada-002')['data'][0]['embedding'])
-df.to_csv('embeddings.csv')
-df.head()
+# df['embeddings'] = df['Definition'].astype(str).apply(lambda x: openai.Embedding.create(input=x, engine='text-embedding-ada-002')['data'][0]['embedding'])
+# df.to_csv('embeddings.csv')
+# df.head()
 
 
 
@@ -122,7 +122,7 @@ def create_context(
             break
 
         # Else add it to the text that is being returned
-        returns.append(row["Definition"])
+        returns.append(str(row["Definition"]))
 
     # Return the context
     return "\n\n###\n\n".join(returns)
@@ -167,8 +167,8 @@ def answer_question(
     except Exception as e:
         print(e)
         return ""
-answer_question(df, question="What day is it?", debug=False)
+answer_question(df, question="What is AC?", debug=False)
 
-answer_question(df, question="What is our newest embeddings model?")
+answer_question(df, question="What is AI?")
 
-answer_question(df, question="What is ChatGPT?")
+answer_question(df, question="What is ACK?")
