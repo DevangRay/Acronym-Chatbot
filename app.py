@@ -16,8 +16,10 @@ def chat_bot():
         else:
             # GET ANSWER from CHATGPT
             answer = "bababooey"
-            messages.append({'question': question, 'answer': answer})
-            return render_template("app_home.html",  messages = messages)
+            if len(messages) > 0:
+                del messages[-1]['last']
+            messages.append({'question': question, 'answer': answer, 'last': True})
+            return redirect(request.url+"#last_message")
     return render_template("app_home.html", messages = messages)
 
 

@@ -18,10 +18,10 @@
             crossorigin="anonymous"></script>
 </head>
 
-<body style="background-color: #798287">
+<body style="background-color: #698287">
 <div class="text-center">
-    <h1 style="color: #01A990"
-        class="display-4"><strong>
+    <h1 style="color: #acf9e9"
+        class="display-3 mb-5 mt-4"><strong>
         SwifTerms
     </strong></h1>
 </div>
@@ -38,7 +38,7 @@
         </svg>
         <strong>{{warning}}</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
     {% endfor %}
@@ -46,15 +46,30 @@
     {% endwith %}
 </div>
 
-<div class="card mr-5 ml-5 p-5" style="background-color: #333D3E">
-    <div class="overflow-auto" style="height: 20em">
+<div class="card mr-5 ml-5 p-5" style="background-color: #333d3e">
+    <div style="height: 20em; display: block; overflow: auto;">
         {% for message in messages %}
-        <div class="text-right">
-            <p style="color: white">{{message['question']}}</p>
+        <div style="display: flex; flex-direction: row; justify-content: flex-end; max-width: inherit; overflow-block: scroll">
+            <p style="color: white; background-color: #01a990; border-radius: 25px; text-align: left" class="p-3">
+                {{message['question']}}</p>
         </div>
-        <div class="text-left">
-            <p style="color: white">{{message['answer']}}</p>
+        <!--        <div class="text-right">-->
+        <!--            <p style="color: white; background-color: #01a990; border-radius: 25px" class="p-3">{{message['question']}}</p>-->
+        <!--        </div>-->
+        {% if message.last %}
+        <div style="display: flex; flex-direction: row; justify-content: flex-start" id="last_message">
+            <p style="color: white; background-color: #f8f8f8; border-radius: 25px; text-align: left; color: black"
+               class="p-3">{{message['answer']}}</p>
         </div>
+        {% else %}
+        <div style="display: flex; flex-direction: row; justify-content: flex-start">
+            <p style="color: white; background-color: #f8f8f8; border-radius: 25px; text-align: left; color: black"
+               class="p-3">{{message['answer']}}</p>
+        </div>
+        {% endif %}
+        <!--        <div class="text-left">-->
+        <!--            <p style="color: white">{{message['answer']}}</p>-->
+        <!--        </div>-->
         {% endfor %}
     </div>
 
@@ -62,10 +77,11 @@
         <form method="post">
             <div class="form-row">
                 <div class="col-11">
-                    <input class="form-control" type="text" name="question" placeholder="What do you want to say">
+                    <input class="form-control" type="text" name="question" placeholder="What do you want to say"
+                           style="background-color: #333d3e; border-color: #333d3e;color: white">
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn" style="background-color: #00FFA5">Submit</button>
+                    <button type="submit" class="btn" style="background-color: #cffbf2">Submit</button>
                 </div>
             </div>
         </form>
