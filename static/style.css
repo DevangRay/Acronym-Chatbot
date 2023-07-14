@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Aeonik Pro";
+    src: url("AeonikProTRIAL-Regular.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #698287;
+    font-family: "Aeonik Pro", sans-serif;
+}
+
+.chat-scroll {
+    position: absolute;
+    left:0;
+    right:0;
+    border: 1px solid #000000;
+}
