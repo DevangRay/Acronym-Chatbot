@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
+from backend import run_chatbot
 
 app = Flask(__name__)
 #Not so secret, secret key
@@ -15,7 +16,8 @@ def chat_bot():
             flash('Please type something bozo')
         else:
             # GET ANSWER from CHATGPT
-            answer = "bababooey"
+            answer = run_chatbot(question)
+            print(answer)
             if len(messages) > 0:
                 del messages[-1]['last']
             messages.append({'question': question, 'answer': answer, 'last': True})
