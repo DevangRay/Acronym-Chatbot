@@ -17,7 +17,6 @@ def chat_bot():
         else:
             # GET ANSWER from CHATGPT
             answer = run_chatbot(question)
-            print(answer)
             if len(messages) > 0:
                 del messages[-1]['last']
             messages.append({'question': question, 'answer': answer, 'last': True})
