@@ -13,7 +13,7 @@ def chat_bot():
     elif request.method == 'POST':
         question = request.form['question']
         if question == "":
-            flash('Please type something bozo')
+            flash('Missing a Value. Please type an input before asking!')
         else:
             # GET ANSWER from CHATGPT
             answer = run_chatbot(question)

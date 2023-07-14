@@ -58,7 +58,7 @@ def run_chatbot(user_input):
                 else:
                     gpt_response = generate_response(description)
                     response += gpt_response
-                    answer =  f"{response}"
+                    answer =  f"This isn't an acronym but I still know it. {response}"
                 flag = True
                 break
 
