@@ -9,7 +9,7 @@ acronym_definitions = dict(zip(df['Acronym'], df['Definition']))
 acronym_descriptions = dict(zip(df['Acronym'], df['Description']))
 
 # OpenAI API credentials
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 # Define a function to get the definition of an acronym
