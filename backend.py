@@ -1,5 +1,6 @@
 import pandas as pd
 import openai
+import config
 
 # Load the Excel sheet containing the acronyms and definitions
 df = pd.read_excel('abbreviations.xlsx')
@@ -9,7 +10,7 @@ acronym_definitions = dict(zip(df['Acronym'], df['Definition']))
 acronym_descriptions = dict(zip(df['Acronym'], df['Description']))
 
 # OpenAI API credentials
-openai.api_key = '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'
+openai.api_key = config.openai_api_key
 
 
 # Define a function to get the definition of an acronym
