@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SwiftTerms Bot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+
+<body style="background-color: #698287">
+<div class="text-center">
+    <h1 style="color: #acf9e9"
+        class="display-3 mb-5 mt-4"><strong>
+        SwifTerms
+    </strong></h1>
+</div>
+{% block content %}
+<div>
+    {% with warnings = get_flashed_messages() %}
+    {% if warnings %}
+    {% for warning in warnings %}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+             class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img"
+             aria-label="Warning:">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+        <strong>{{warning}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+
+<div class="card mr-5 ml-5 p-5" style="background-color: #333d3e">
+    <div style="height: 20em; display: block; overflow: auto;">
+        {% for message in messages %}
+        <div style="display: flex; flex-direction: row; justify-content: flex-end; max-width: inherit; overflow-block: scroll">
+            <p style="color: white; background-color: #01a990; border-radius: 25px; text-align: left" class="p-3">
+                {{message['question']}}</p>
+        </div>
+        <!--        <div class="text-right">-->
+        <!--            <p style="color: white; background-color: #01a990; border-radius: 25px" class="p-3">{{message['question']}}</p>-->
+        <!--        </div>-->
+        {% if message.last %}
+        <div style="display: flex; flex-direction: row; justify-content: flex-start" id="last_message">
+            <p style="color: white; background-color: #f8f8f8; border-radius: 25px; text-align: left; color: black"
+               class="p-3">{{message['answer']}}</p>
+        </div>
+        {% else %}
+        <div style="display: flex; flex-direction: row; justify-content: flex-start">
+            <p style="color: white; background-color: #f8f8f8; border-radius: 25px; text-align: left; color: black"
+               class="p-3">{{message['answer']}}</p>
+        </div>
+        {% endif %}
+        <!--        <div class="text-left">-->
+        <!--            <p style="color: white">{{message['answer']}}</p>-->
+        <!--        </div>-->
+        {% endfor %}
+    </div>
+
+    <div class="mt-2">
+        <form method="post">
+            <div class="form-row">
+                <div class="col-11">
+                    <input class="form-control" type="text" name="question" placeholder="What do you want to say"
+                           style="background-color: #333d3e; border-color: #333d3e;color: white">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn" style="background-color: #cffbf2">Ask</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
